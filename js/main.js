@@ -58,25 +58,26 @@ class Ball {
     this.x += this.velX;
     this.y += this.velY;
   }
-  
+}
   //animating them
-  const balls = [ ];
+  
+  const balls = [];
   
   while (balls.length < 25) {
     const size = random(10,20);
-    const ball = new Ball(
+    const balls = new Ball(
       //ball position always at least 1 ball width from edge
       random(0 + size,width - size),
       random(0 + size,height - size),
       random(-7,7),
-      random(-7,7),
+      random(-7,7)
       randomRGB(),
       size
       );
   
     balls.push(ball);
   }
-}
+
 
 //loops everything
 function loop() {
