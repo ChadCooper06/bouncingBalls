@@ -55,7 +55,6 @@ class Ball {
     this.x += this.velX;
     this.y += this.velY;
   }
-}
   
   //animating them
   const balls = [];
@@ -73,6 +72,7 @@ while (balls.length < 25) {
     );
   
   balls.push(ball);
+}
 }
 
 function loop() {
