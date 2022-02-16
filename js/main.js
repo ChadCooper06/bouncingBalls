@@ -72,6 +72,7 @@ class Ball {
         }
       }
     }
+  }
 }
 
   //animating them
