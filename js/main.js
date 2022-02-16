@@ -65,7 +65,7 @@ class Ball {
   
   while (balls.length < 25) {
     const size = random(10,20);
-    const balls = new Ball(
+    const ball = new Ball(
       //ball position always at least 1 ball width from edge
       random(0 + size,width - size),
       random(0 + size,height - size),
