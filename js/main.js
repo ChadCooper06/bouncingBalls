@@ -72,8 +72,7 @@ class Ball {
       random(-7,7),
       random(-7,7),
       randomRGB(),
-      size
-      );
+      size);
   
     balls.push(ball);
   }
