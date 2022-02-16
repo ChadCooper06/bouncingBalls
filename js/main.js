@@ -22,6 +22,7 @@ function randomRGB() {
 //creating class for the randomly colored balls
 
 class Ball {
+  //this is what builds the ball
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
@@ -30,10 +31,59 @@ class Ball {
     this.color = color;
     this.size = size;
   }
+  //this actually draws the ball
   draw() {
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
   }
+  //this will make the ball move
+  update() {
+    if ((this.x + this.size) >= width) {
+         this.velX = -(this.velX);
+    }
+    if ((this.x - this.size) <= 0) {
+      this.velX = -(this.velX);
+    }
+    if ((this.y + this.size) >= height) {
+      this.velY = -(this.velY);
+    }
+    if ((this.y - this.size) <= 0) {
+      this.velY = -(this.velY);
+    }
+    this.x += this.velX;
+    this.y += this.velY;
+  }
+  
+  //animating them
+  const balls = [];
+  
+while (balls.length < 25) {
+  const size = random(10,20);
+  const ball = new Ball(
+    //ball position always at least 1 ball width from edge
+    random(0 + size,width-size),
+    random(0 + size,height-size),
+    random(-7,7),
+    random(-7,7),
+    randomRGB(),
+    size
+    );
+  
+  balls.push(ball);
 }
+
+function loop() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillRect(0, 0, width, height);
+  
+  for (const ball of balls) {
+    ball.draw();
+    ball.update();
+  }
+  
+  requestAnimationFrame(loop);
+}
+}
+loop();
