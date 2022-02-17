@@ -45,7 +45,7 @@ class Ball {
   randomRGB() {
     random `${rgb(0,255)}`;
     random `${rgb(0,255)}`;
-    random `${rgb(0,255)}``;
+    random `${rgb(0,255)}`;
   }
   
   //this will make the ball move
