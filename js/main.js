@@ -15,9 +15,9 @@ function random(min,max) {
 
 //function to generate random color
 
-function randomRGB() {
-  return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
-}
+//function randomRGB() {
+//  return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
+//}
 
 //creating class for the randomly colored balls
 
@@ -39,6 +39,13 @@ class Ball {
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
+  }
+
+  //creating color change function
+  randomRGB() {
+    random(0,255);
+    random(0,255);
+    random(0,255);
   }
   
   //this will make the ball move
