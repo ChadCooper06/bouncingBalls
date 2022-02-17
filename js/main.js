@@ -15,10 +15,41 @@ function random(min,max) {
 
 //function to generate random color
 
-//function randomRGB() {
-//  return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
-//}
+function randomRGB() {
+  return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
+}
 
+/*class Square {
+  constructor(x, y, velX, velY, color, size) {
+    this.x = x;
+    this.y = y;
+    this.velX = velX;
+    this.velY = velY;
+    this.color = color;
+    this.size = size;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+  update() {
+    if ((this.x + this.size) >= width) {
+         this.velX = -(this.velX);
+    }
+    if ((this.x - this.size) <= 0) {
+      this.velX = -(this.velX);
+    }
+    if ((this.y + this.size) >= height) {
+      this.velY = -(this.velY);
+    }
+    if ((this.y - this.size) <= 0) {
+      this.velY = -(this.velY);
+    }
+    this.x += this.velX;
+    this.y += this.velY;
+  }
+}*/
 //creating class for the randomly colored balls
 
 class Ball {
@@ -42,11 +73,11 @@ class Ball {
   }
 
   //creating color change function
-  randomRGB() {
-    random `${rgb(0,255)}`;
-    random `${rgb(0,255)}`;
-    random `${rgb(0,255)}`;
-  }
+  //randomRGB() {
+  //  random `${rgb(0,255)}`;
+  //  random `${rgb(0,255)}`;
+  //  random `${rgb(0,255)}`;
+  //}
   
   //this will make the ball move
   update() {
@@ -81,13 +112,25 @@ class Ball {
     }
   }
 }
+/*
+  const squares = [];
+  while (square.length < 7) {
+    const size = random(15,25);
+    const square = new Square(
+      random(0 + size,width-size),
+      random(0 + size,height - size),
+      random(-5,5),
+      random(-5,5),
+      randomRGB(),
+      size);
 
+  }*/
   //animating them
   
   const balls = [];
   
-  while (balls.length < 25) {
-    const size = random(10,20);
+  while (balls.length < 12) {
+    const size = random(10,35);
     const ball = new Ball(
       //ball position always at least 1 ball width from edge
       random(0 + size,width - size),
