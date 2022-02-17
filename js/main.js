@@ -19,7 +19,7 @@ function randomRGB() {
   return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 }
 
-class Square {
+/*class Square {
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
@@ -49,7 +49,7 @@ class Square {
     this.x += this.velX;
     this.y += this.velY;
   }
-}
+}*/
 //creating class for the randomly colored balls
 
 class Ball {
@@ -112,7 +112,7 @@ class Ball {
     }
   }
 }
-
+/*
   const squares = [];
   while (square.length < 7) {
     const size = random(15,25);
@@ -124,7 +124,7 @@ class Ball {
       randomRGB(),
       size);
 
-  }
+  }*/
   //animating them
   
   const balls = [];
