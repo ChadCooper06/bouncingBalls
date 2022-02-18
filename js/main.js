@@ -8,16 +8,12 @@ const height = canvas.height = window.innerHeight;
 
 //function to generate random number
 
-function random(min,max) {
-  const num = Math.floor(Math.random() * (max - min + 1) + min);
-  return num;
-}
+const random = (min,max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 //function to generate random color
 
-function randomRGB() {
-  return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
-}
+const randomRGB = () =>
+  `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 
 /*class Square {
   constructor(x, y, velX, velY, color, size) {
@@ -52,18 +48,26 @@ function randomRGB() {
 }*/
 //creating class for the randomly colored balls
 
-class Ball {
+class Shapes {
   
-  //this is what builds the ball
+  //this is the basis that all balls (and other shapes when I can add them) will share
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
     this.velX = velX;
     this.velY = velY;
-    this.color = color;
-    this.size = size;
   }
+}
+
+//extends lets this add to Shapes class and super lets it pull from that class
+class Ball extends Shapes {
   
+    constructor(x, y, velX, velY, color, size) {
+      super(x, y, velX, velY);
+      this.color = color;
+      this.size = size;
+    }
+    
   //this actually draws the ball
   draw() {
     ctx.beginPath();
@@ -104,7 +108,7 @@ class Ball {
         const dx = this.x - ball.x;
         const dy = this.y - ball.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+      
         if (distance < this.size + ball.size) {
           ball.color = this.color = randomRGB();
         }
@@ -112,6 +116,7 @@ class Ball {
     }
   }
 }
+
 /*
   const squares = [];
   while (square.length < 7) {
@@ -125,8 +130,60 @@ class Ball {
       size);
 
   }*/
-  //animating them
-  
+
+//makes a circle I can hopefully move around
+class EvilCircle extends Shape {
+  constructor(x, y) {
+    super(x, y, 15, 15);
+    this.color = 'yellow';
+    this.size = 15;
+    
+      //makes event listener to move the circle
+    window.addEventListener('keydown', (e) => {
+      switch(e.key) {
+        case "ArrowUp": 
+          this.y.evilCircle[0] += this.velY.evilCircle[0];
+          break;
+        case "ArrowDown":
+          this.y.evilCircle[0] -= this.velY.evilCircle[0];
+          break;
+        case "ArrowRight":
+          this.x.evilCircle[0] += this.velX.evilCircle[0];
+          break;
+        case "ArrowLeft":
+          this.x.evilCircle[0] -= this.velX.evilCircle[0];
+          break;
+      }
+      
+      if ("ArrowUp" && "ArrowRight") {
+        this.y.evilCircle[0] += this.velY.evilCircle[0];
+        this.x.evilCircle[0] += this.velX.evilCircle[0];
+      }
+      if ("ArrowUp" && "ArrowLeft") {
+        this.y.evilCircle[0] += this.velY.evilCircle[0];
+        this.x.evilCircle[0] -= this.velX.evilCircle[0];
+      }
+      if ("ArrowDown && "ArrowLeft") {
+         this.y.evilCircle[0] -= this.velY.evilCircle[0];
+         this.x.evilCircle[0] -= this.velX.evilCircle[0];
+      }
+      if ("ArrowDown && "ArrowRight") {
+         this.y.evilCircle[0] -= this.velY.evilCircle[0];
+         this.x.evilCircle[0] += this.velX.evilCircle[0];
+      }
+    });
+   }
+    draw() {
+      ctx.beginPath();
+      ctx.strokeStyle = this.color;
+      ctx.arc(this.x, this.y, this.size, 0, 2 * MathPI);
+      ctx.stroke();
+      ctx.lineWidth = 4;
+    }
+
+}
+
+//animating them
   const balls = [];
   
   while (balls.length < 12) {
@@ -143,6 +200,16 @@ class Ball {
     balls.push(ball);
   }
 
+const evilCircles = [];
+
+while (evilCircles.length < 2) {
+  const evilCircle = new EvilCircle(
+    random(0, width),
+    random(0, height)
+    )
+  evilCircles.push(evilCircle);
+}
+
 
 //loops everything
 function loop() {
@@ -154,6 +221,10 @@ function loop() {
     ball.update();
     ball.collisionDetect();
   }
+  for (const evilCircle of evilCircle) {
+    evilCircle.draw();
+    evilCircle.collisionDetect();
+  }/
   
   requestAnimationFrame(loop);
 }
