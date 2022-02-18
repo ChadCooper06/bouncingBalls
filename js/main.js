@@ -164,38 +164,38 @@ while (evilCircles.length < 1) {
   onkeydown.addEventListener('keydown', e); {
     switch(e) {
       case "ArrowUp": 
-        this.y.evilCircle[0] += this.velY.evilCircle[0];
+        this.y.evilCircle: 0 += this.velY.evilCircle: 0;
         break;
       case "ArrowDown":
-        this.y.evilCircle[0] -= this.velY.evilCircle[0];
+        this.y.evilCircle: 0 -= this.velY.evilCircle: 0;
         break;
       case "ArrowRight":
-        this.x.evilCircle[0] += this.velX.evilCircle[0];
+        this.x.evilCircle: 0 += this.velX.evilCircle: 0;
         break;
       case "ArrowLeft":
-        this.x.evilCircle[0] -= this.velX.evilCircle[0];
+        this.x.evilCircle: 0 -= this.velX.evilCircle: 0;
         break;
       
       //makes the actual movement occur based on button hit
       
       case "ArrowUp" && "ArrowRight":
-        this.y.evilCircle[0] += this.velY.evilCircle[0];
-        this.x.evilCircle[0] += this.velX.evilCircle[0];
+        this.y.evilCircle: 0 += this.velY.evilCircle: 0;
+        this.x.evilCircle: 0 += this.velX.evilCircle: 0;
         break;
       
       case "ArrowUp" && "ArrowLeft": 
-        this.y.evilCircle[0] += this.velY.evilCircle[0];
-        this.x.evilCircle[0] -= this.velX.evilCircle[0];
+        this.y.evilCircle: 0 += this.velY.evilCircle: 0;
+        this.x.evilCircle: 0 -= this.velX.evilCircle: 0;
         break;
       
       case "ArrowDown" && "ArrowLeft":
-        this.y.evilCircle[0] -= this.velY.evilCircle[0];
-        this.x.evilCircle[0] -= this.velX.evilCircle[0];
+        this.y.evilCircle: 0 -= this.velY.evilCircle: 0;
+        this.x.evilCircle: 0 -= this.velX.evilCircle: 0;
         break;
       
       case "ArrowDown" && "ArrowRight":
-        this.y.evilCircle[0] -= this.velY.evilCircle[0];
-        this.x.evilCircle[0] += this.velX.evilCircle[0];
+        this.y.evilCircle: 0 -= this.velY.evilCircle: 0;
+        this.x.evilCircle: 0 += this.velX.evilCircle: 0;
         break;
       
     }
@@ -207,7 +207,7 @@ while (evilCircles.length < 1) {
 
 //loops everything
 function loop() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
   ctx.fillRect(0, 0, width, height);
   
   for (const ball of balls) {
