@@ -180,6 +180,36 @@ class EvilCircle extends Shapes {
   }
 } 
   
+  
+
+  
+
+//animating them
+  const balls = [];
+  
+  while (balls.length < 12) {
+    const size = random(10,35);
+    const ball = new Ball(
+      //ball position always at least 1 ball width from edge
+      random(0 + size,width - size),
+      random(0 + size,height - size),
+      random(-7,7),
+      random(-7,7),
+      randomRGB(),
+      size);
+  
+    balls.push(ball);
+  }
+
+const evilCircle = [];
+
+while (evilCircle.length < 2) {
+  const evilCircle = new EvilCircle(
+    random(0, width),
+    random(0, height)
+    )
+  evilCircle.push(evilCircle);
+
   //makes event listener to move the circle
   EvilCircle.window.addEventListener('keydown', e); {
     switch(e.key) {
@@ -216,34 +246,6 @@ class EvilCircle extends Shapes {
       }
     }
   };
-
-  
-
-//animating them
-  const balls = [];
-  
-  while (balls.length < 12) {
-    const size = random(10,35);
-    const ball = new Ball(
-      //ball position always at least 1 ball width from edge
-      random(0 + size,width - size),
-      random(0 + size,height - size),
-      random(-7,7),
-      random(-7,7),
-      randomRGB(),
-      size);
-  
-    balls.push(ball);
-  }
-
-const evilCircle = [];
-
-while (evilCircle.length < 2) {
-  const evilCircle = new EvilCircle(
-    random(0, width),
-    random(0, height)
-    )
-  evilCircle.push(evilCircle);
 }
 
 
