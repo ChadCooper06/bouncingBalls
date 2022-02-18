@@ -181,7 +181,7 @@ class EvilCircle extends Shapes {
 } 
   
   //makes event listener to move the circle
-  EvilCircle.window.addEventListener(keydown, e); {
+  EvilCircle.window.addEventListener('keydown', e); {
     switch(e.key) {
       case "ArrowUp": 
         this.y.evilCircle[0] += this.velY.evilCircle[0];
