@@ -166,14 +166,14 @@ class EvilCircle extends Shapes {
   }
 
   collisionDetect() {
-    for (const ball of balls) {
-      if (!(this === ball)) {
-        const dx = this.x - ball.x;
-        const dy = this.y - ball.y;
+    for (const evilCircle of evilCircles) {
+      if (!(this === evilCircle)) {
+        const dx = this.x - evilCircle.x;
+        const dy = this.y - evilCircle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance < this.size + ball.size) {
-          ball.color = this.color = randomRGB();
+        if (distance < this.size + evilCircle.size) {
+          evilCircle.color = this.color = yellow;
         }
       }
     }
