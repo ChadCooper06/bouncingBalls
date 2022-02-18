@@ -12,10 +12,10 @@ const random = (min,max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 //function to generate random color
 
-const randomRGB = () =>
-  `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
+const randomRGB = () => `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 
-/*class Square {
+/*
+class Square {
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
@@ -62,11 +62,11 @@ class Shapes {
 //extends lets this add to Shapes class and super lets it pull from that class
 class Ball extends Shapes {
   
-    constructor(x, y, velX, velY, color, size) {
-      super(x, y, velX, velY);
-      this.color = color;
-      this.size = size;
-    }
+  constructor(x, y, velX, velY, color, size) {
+    super(x, y, velX, velY);
+    this.color = color;
+    this.size = size;
+  }
     
   //this actually draws the ball
   draw() {
@@ -127,9 +127,10 @@ class Ball extends Shapes {
       random(-5,5),
       random(-5,5),
       randomRGB(),
-      size);
-
-  }*/
+      size
+    );
+  }
+*/
 
 //makes a circle I can hopefully move around
 class EvilCircle extends Shape {
@@ -137,24 +138,66 @@ class EvilCircle extends Shape {
     super(x, y, 15, 15);
     this.color = 'yellow';
     this.size = 15;
-    
-      //makes event listener to move the circle
-    window.addEventListener('keydown', (e) => {
-      switch(e.key) {
-        case "ArrowUp": 
-          this.y.evilCircle[0] += this.velY.evilCircle[0];
-          break;
-        case "ArrowDown":
-          this.y.evilCircle[0] -= this.velY.evilCircle[0];
-          break;
-        case "ArrowRight":
-          this.x.evilCircle[0] += this.velX.evilCircle[0];
-          break;
-        case "ArrowLeft":
-          this.x.evilCircle[0] -= this.velX.evilCircle[0];
-          break;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.strokeStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * MathPI);
+    ctx.stroke();
+    ctx.lineWidth = 4;
+  }
+
+  update() {
+    if ((this.x + this.size) >= width) {
+      this.velX = -(this.velX);
+    }
+    if ((this.x - this.size) <= 0) {
+      this.velX = -(this.velX);
+    }
+    if ((this.y + this.size) >= height) {
+      this.velY = -(this.velY);
+    }
+    if ((this.y - this.size) <= 0) {
+      this.velY = -(this.velY);
+    }
+    this.x += this.velX;
+    this.y += this.velY;
+  }
+
+  collisionDetect() {
+    for (const ball of balls) {
+      if (!(this === ball)) {
+        const dx = this.x - ball.x;
+        const dy = this.y - ball.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < this.size + ball.size) {
+          ball.color = this.color = randomRGB();
+        }
       }
+    }
+  }
+} 
+  
+  //makes event listener to move the circle
+  EvilCircle.window.addEventListener(keydown, e); {
+    switch(e.key) {
+      case "ArrowUp": 
+        this.y.evilCircle[0] += this.velY.evilCircle[0];
+        break;
+      case "ArrowDown":
+        this.y.evilCircle[0] -= this.velY.evilCircle[0];
+        break;
+      case "ArrowRight":
+        this.x.evilCircle[0] += this.velX.evilCircle[0];
+        break;
+      case "ArrowLeft":
+        this.x.evilCircle[0] -= this.velX.evilCircle[0];
+        break;
       
+      //makes the actual movement occur based on button hit
+
       if ("ArrowUp" && "ArrowRight") {
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         this.x.evilCircle[0] += this.velX.evilCircle[0];
@@ -163,25 +206,18 @@ class EvilCircle extends Shape {
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         this.x.evilCircle[0] -= this.velX.evilCircle[0];
       }
-      if ("ArrowDown && "ArrowLeft") {
-         this.y.evilCircle[0] -= this.velY.evilCircle[0];
-         this.x.evilCircle[0] -= this.velX.evilCircle[0];
+      if ("ArrowDown" && "ArrowLeft") {
+        this.y.evilCircle[0] -= this.velY.evilCircle[0];
+        this.x.evilCircle[0] -= this.velX.evilCircle[0];
       }
-      if ("ArrowDown && "ArrowRight") {
-         this.y.evilCircle[0] -= this.velY.evilCircle[0];
-         this.x.evilCircle[0] += this.velX.evilCircle[0];
+      if ("ArrowDown" && "ArrowRight") {
+        this.y.evilCircle[0] -= this.velY.evilCircle[0];
+        this.x.evilCircle[0] += this.velX.evilCircle[0];
       }
-    });
-   }
-    draw() {
-      ctx.beginPath();
-      ctx.strokeStyle = this.color;
-      ctx.arc(this.x, this.y, this.size, 0, 2 * MathPI);
-      ctx.stroke();
-      ctx.lineWidth = 4;
     }
+  };
 
-}
+  
 
 //animating them
   const balls = [];
@@ -223,8 +259,9 @@ function loop() {
   }
   for (const evilCircle of evilCircle) {
     evilCircle.draw();
+    evilCircle.update();
     evilCircle.collisionDetect();
-  }/
+  }
   
   requestAnimationFrame(loop);
 }
