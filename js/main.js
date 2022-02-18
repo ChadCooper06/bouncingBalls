@@ -14,44 +14,12 @@ const random = (min,max) => Math.floor(Math.random() * (max - min + 1) + min);
 
 const randomRGB = () => `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 
-/*
-class Square {
-  constructor(x, y, velX, velY, color, size) {
-    this.x = x;
-    this.y = y;
-    this.velX = velX;
-    this.velY = velY;
-    this.color = color;
-    this.size = size;
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
-  }
-  update() {
-    if ((this.x + this.size) >= width) {
-         this.velX = -(this.velX);
-    }
-    if ((this.x - this.size) <= 0) {
-      this.velX = -(this.velX);
-    }
-    if ((this.y + this.size) >= height) {
-      this.velY = -(this.velY);
-    }
-    if ((this.y - this.size) <= 0) {
-      this.velY = -(this.velY);
-    }
-    this.x += this.velX;
-    this.y += this.velY;
-  }
-}*/
 //creating class for the randomly colored balls
 
 class Shapes {
   
   //this is the basis that all balls (and other shapes when I can add them) will share
-  constructor(x, y, velX, velY, color, size) {
+  constructor(x, y, velX, velY) {
     this.x = x;
     this.y = y;
     this.velX = velX;
@@ -118,31 +86,16 @@ class Ball extends Shapes {
 }
 
 /*
-  const squares = [];
-  while (square.length < 7) {
-    const size = random(15,25);
-    const square = new Square(
-      random(0 + size,width-size),
-      random(0 + size,height - size),
-      random(-5,5),
-      random(-5,5),
-      randomRGB(),
-      size
-    );
-  }
-*/
-
 //makes a circle I can hopefully move around
 class EvilCircle extends Shapes {
   constructor(x, y) {
     super(x, y, 15, 15);
     this.color = 'yellow';
-    this.size = 15;
+    this.size = 20;
   }
 
   draw() {
     ctx.beginPath();
-    ctx.strokeStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2 * MathPI);
     ctx.stroke();
     ctx.lineWidth = 4;
@@ -171,23 +124,20 @@ class EvilCircle extends Shapes {
         const dx = this.x - evilCircle.x;
         const dy = this.y - evilCircle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+      
         if (distance < this.size + evilCircle.size) {
-          evilCircle.color = this.color = yellow;
+          evilCircle.color = this.color = randomRGB();
         }
       }
     }
   }
-} 
-  
-  
 
-  
+} */
 
 //animating them
-  const balls = [];
+const balls = [];
   
-  while (balls.length < 12) {
+  while (balls.length < 32) {
     const size = random(10,35);
     const ball = new Ball(
       //ball position always at least 1 ball width from edge
@@ -200,10 +150,10 @@ class EvilCircle extends Shapes {
   
     balls.push(ball);
   }
-
+/*
 const evilCircles = [];
 
-while (evilCircles.length === 1) {
+while (evilCircles.length < 1) {
   const evilCircle = new EvilCircle(
     random(0, width),
     random(0, height)
@@ -211,8 +161,8 @@ while (evilCircles.length === 1) {
   evilCircles.push(evilCircle);
 
   //makes event listener to move the circle
-  EvilCircle.window.addEventListener('keydown', e); {
-    switch(e.key) {
+  evilCircle.addEventListener(onkeydown, 'keydown'); {
+    switch(onkeydown) {
       case "ArrowUp": 
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         break;
@@ -227,27 +177,32 @@ while (evilCircles.length === 1) {
         break;
       
       //makes the actual movement occur based on button hit
-
-      if ("ArrowUp" && "ArrowRight") {
+      
+      case "ArrowUp" && "ArrowRight":
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         this.x.evilCircle[0] += this.velX.evilCircle[0];
-      }
-      if ("ArrowUp" && "ArrowLeft") {
+        break;
+      
+      case "ArrowUp" && "ArrowLeft": 
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         this.x.evilCircle[0] -= this.velX.evilCircle[0];
-      }
-      if ("ArrowDown" && "ArrowLeft") {
+        break;
+      
+      case "ArrowDown" && "ArrowLeft":
         this.y.evilCircle[0] -= this.velY.evilCircle[0];
         this.x.evilCircle[0] -= this.velX.evilCircle[0];
-      }
-      if ("ArrowDown" && "ArrowRight") {
+        break;
+      
+      case "ArrowDown" && "ArrowRight":
         this.y.evilCircle[0] -= this.velY.evilCircle[0];
         this.x.evilCircle[0] += this.velX.evilCircle[0];
-      }
+        break;
+      
     }
   };
 }
 
+*/
 
 //loops everything
 function loop() {
@@ -259,12 +214,13 @@ function loop() {
     ball.update();
     ball.collisionDetect();
   }
+  /*
   for (const evilCircle of evilCircles) {
     evilCircle.draw();
     evilCircle.update();
     evilCircle.collisionDetect();
   }
-  
+  */
   requestAnimationFrame(loop);
 }
 
