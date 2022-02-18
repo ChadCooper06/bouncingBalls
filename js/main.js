@@ -132,8 +132,8 @@ class EvilCircle extends Shapes {
     }
   }
 
-} */
-
+} 
+*/
 //animating them
 const balls = [];
   
@@ -161,8 +161,8 @@ while (evilCircles.length < 1) {
   evilCircles.push(evilCircle);
 
   //makes event listener to move the circle
-  evilCircle.addEventListener(onkeydown, 'keydown'); {
-    switch(onkeydown) {
+  onkeydown.addEventListener('keydown', e); {
+    switch(e) {
       case "ArrowUp": 
         this.y.evilCircle[0] += this.velY.evilCircle[0];
         break;
@@ -199,10 +199,11 @@ while (evilCircles.length < 1) {
         break;
       
     }
+    preventDefault();
   };
 }
-
 */
+
 
 //loops everything
 function loop() {
