@@ -201,14 +201,14 @@ class EvilCircle extends Shapes {
     balls.push(ball);
   }
 
-const evilCircle = [];
+const evilCircles = [];
 
-while (evilCircle.length < 2) {
+while (evilCircles.length === 1) {
   const evilCircle = new EvilCircle(
     random(0, width),
     random(0, height)
     )
-  evilCircle.push(evilCircle);
+  evilCircles.push(evilCircle);
 
   //makes event listener to move the circle
   EvilCircle.window.addEventListener('keydown', e); {
@@ -259,7 +259,7 @@ function loop() {
     ball.update();
     ball.collisionDetect();
   }
-  for (const evilCircle of evilCircle) {
+  for (const evilCircle of evilCircles) {
     evilCircle.draw();
     evilCircle.update();
     evilCircle.collisionDetect();
