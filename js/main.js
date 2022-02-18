@@ -133,7 +133,7 @@ class Ball extends Shapes {
 */
 
 //makes a circle I can hopefully move around
-class EvilCircle extends Shape {
+class EvilCircle extends Shapes {
   constructor(x, y) {
     super(x, y, 15, 15);
     this.color = 'yellow';
