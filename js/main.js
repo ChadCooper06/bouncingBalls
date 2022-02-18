@@ -236,14 +236,14 @@ class EvilCircle extends Shapes {
     balls.push(ball);
   }
 
-const evilCircles = [];
+const evilCircle = [];
 
-while (evilCircles.length < 2) {
+while (evilCircle.length < 2) {
   const evilCircle = new EvilCircle(
     random(0, width),
     random(0, height)
     )
-  evilCircles.push(evilCircle);
+  evilCircle.push(evilCircle);
 }
 
 
